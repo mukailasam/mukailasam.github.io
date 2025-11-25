@@ -1,0 +1,256 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #1e1e24;
+    color: white;
+    margin: 0;
+    padding: 40px;
+    /* Add space around the edges */
+    min-height: 100vh;
+    /* Allow it to grow */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Start from top, don't center vertically */
+}
+
+
+/* The container determines the simulation area */
+
+.network-container {
+    position: relative;
+    width: 700px;
+    height: 700px;
+    margin-bottom: 50px;
+    /* Extra space at bottom for scrolling */
+}
+
+
+/* The Central Cloud/Hub */
+
+.cloud {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: #3498db;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 50px rgba(52, 152, 219, 0.4);
+    z-index: 5;
+    border: 4px solid #fff;
+}
+
+.cloud span {
+    font-size: 24px;
+}
+
+.cloud small {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* The Devices */
+
+.device {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    background: #2b2b36;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid #444;
+    z-index: 10;
+}
+
+.device.online {
+    border-color: #2ecc71;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+}
+
+.device.offline {
+    border-color: #e74c3c;
+    opacity: 0.8;
+}
+
+.device-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.device-title {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+
+/* Toggle Switch */
+
+.toggle {
+    position: relative;
+    width: 30px;
+    height: 16px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e74c3c;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2ecc71;
+}
+
+input:checked+.slider:before {
+    transform: translateX(14px);
+}
+
+
+/* Inputs and Lists */
+
+.input-area {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    background: #444;
+    color: white;
+    font-size: 11px;
+}
+
+button {
+    background: #555;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 2px 8px;
+}
+
+button:hover {
+    background: #777;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    font-size: 11px;
+}
+
+ul::-webkit-scrollbar {
+    width: 4px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 2px;
+}
+
+li {
+    padding: 3px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    animation: fadeIn 0.3s;
+}
+
+li span.check {
+    color: #2ecc71;
+    font-size: 10px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+line {
+    stroke: #444;
+    stroke-width: 2;
+    transition: 0.3s;
+}
+
+line.active {
+    stroke: #2ecc71;
+    stroke-opacity: 0.6;
+}
+
+.packet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 20;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.packet.upload {
+    background: #f1c40f;
+}
+
+.packet.download {
+    background: #3498db;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
