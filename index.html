@@ -1,107 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sam[♞]</title>
+    <title>Sam [♞]</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
 
-<body>
-    <header style="text-align: center; margin-bottom: 60px">
-        <nav style="
-          margin-bottom: 30px;
-          display: flex;
-          justify-content: center;
-          gap: 24px;
-          font-size: 15px;
-        ">
-            <a href="#about">About</a>
-            <a href="./blogs/index.html">Blog</a>
-            <a href="./blogs/invention/inventions.html">Inventions</a>
-        </nav>
+  <body>
+    <header class="main-header">
+      <nav class="nav-links">
+        <a href="#about">~/About</a>
+        <a href="./blogs/codex.html">~/Codex</a>
+        <a href="./invention/invention.html">~/Inventions</a>
+      </nav>
     </header>
 
-    <section id="about">
+    <main class="container">
+      <!-- YOUR ORIGINAL ABOUT CONTENT -->
+      <section id="about">
         <p>
-            <strong>Samsondeen Mukaila</strong><br />A.K.A Oluyanju (The problem solver).
+          <strong>Samsondeen Mukaila</strong><br />
+          A.K.A <span class="highlight">Oluyanju</span> (The problem solver).
         </p>
 
         <p>
-            Is a Software Engineer currently a breaking and fixing stuff at a stealthy mode startup company. He is a curious human who loves learning new things, from math ideas to strange AI concepts to whatever rabbit hole he falls into at 2 a.m.
+          Is a Software Engineer currently Building, breaking, and fixing stuff
+          at a stealth-mode startup company. He is a curious human who loves
+          learning new things, from math ideas to strange AI concepts to
+          whatever rabbit hole he falls into at 2 a.m.
         </p>
 
-        <p>
-            He loves rap music, Core backend stuff, and philosphy in no particular order.
-        </p>
+        <p>He loves rap music, Art, and philosophy in no particular order.</p>
 
         <p>
-            Most days, he’s either reading papers he barely understands (until he does) or building things that work surprisingly well… after breaking them a few times.
-            <br /> But he still doesn’t know how many developers it takes to fix a badly–formatted YAML file.
+          Most days, he’s either reading papers he barely understands (until he
+          does) or building things that work surprisingly well… after breaking
+          them a few times.
+          <br />
+          <span class="muted-text"
+            >But he still doesn’t know how many developers it takes to fix a
+            badly–formatted YAML file.</span
+          >
         </p>
 
         <p>He also loves research like say tomorrow no dey.</p>
 
-        <p>
-            He once told his brother that <strong>Kunle Olukotun</strong> would be the first Black Turing Award winner, and that if
-            <strong>Kunle </strong> doesn’t, he’ll happily take the honor.
+        <p class="turing-block">
+          He once told his brother that <strong>Kunle Olukotun</strong> would be
+          the first Black Turing Award winner, and that if
+          <strong>Kunle</strong> doesn’t, he’ll happily take the honor.
         </p>
-    </section>
+      </section>
 
-    <p>He sometimes <a href="./blogs/index.html">blogs over here</a></p>
-    <section>
-        <span>Some of the open source projects he has worked on are:</span>
+      <p class="blog-link">
+        He sometimes <a href="./blogs/codex.html">blogs over here</a>
+      </p>
 
-        <ul>
-            <li>
-                <a href="./igo/docs/docs.html"><strong>Igo:</strong></a>
-                <i>
-                        A simple and lightweight micro-framework for Go web-applications.
-                    </i>
-            </li>
-            <li>
-                <a href="https://github.com/mukailasam/Gosetup">Gosetup:</strong></a
-            >
-            <i>Project setup tool for Go developer.</i>
-          </li>
-          <li>
-            <a href="https://github.com/mukailasam/Snip"><strong>Snip:</strong></a>
-                <i>
-                A simple tool that lets you download a specific directory or
-                      file from a GitHub repository.
-              </i>
-            </li>
-        </ul>
-    </section>
-    <br />
+      <section class="artifacts-section">
+        <h2 class="section-label">01 // Open Source Artifacts</h2>
 
-    <section>
-        <span>Some of the other places he can be found online are:</span>
-        <div class="contact">
-            <ul>
-                <li>
-                    <strong><a href="https://github.com/mukailasam">Github</a></strong>
-                </li>
-                <li>
-                    <strong><a href="https://linkedin.com/in/mukailasam"
-                >Linkendin</a
-              ></strong
-            >
-          </li>
-          <li>
-            <strong><a href="mailto:n33ds0n@gmail.com">Email</a></strong>
-                </li>
-            </ul>
+        <div class="project-grid">
+          <a href="./igo/docs/docs.html" class="project-node">
+            <div class="project-header">
+              <span class="project-title">[ Igo ]</span>
+              <span class="project-tag">Micro-framework</span>
+            </div>
+            <p class="project-desc">
+              A simple and lightweight micro-framework for Go web-applications.
+              Designed for speed and minimal abstractions.
+            </p>
+          </a>
+
+          <a
+            href="https://github.com/mukailasam/Gosetup"
+            target="_blank"
+            class="project-node"
+          >
+            <div class="project-header">
+              <span class="project-title">[ Gosetup ]</span>
+              <span class="project-tag">CLI Tool</span>
+            </div>
+            <p class="project-desc">
+              Project setup utility for Go developers. Automates the
+              architectural boilerplate for clean system design.
+            </p>
+          </a>
+
+          <a
+            href="https://github.com/mukailasam/Snip"
+            target="_blank"
+            class="project-node"
+          >
+            <div class="project-header">
+              <span class="project-title">[ Snip ]</span>
+              <span class="project-tag">Utility</span>
+            </div>
+            <p class="project-desc">
+              Precision downloader for GitHub. Retrieve specific directories or
+              files without cloning the entire repository.
+            </p>
+          </a>
         </div>
-    </section>
+      </section>
+      <br />
+
+      <footer class="section">
+        <h2 class="section-label">02 // Network Nodes</h2>
+        <div class="contact-links">
+          <a href="https://github.com/mukailasam">Github</a>
+          <a href="https://linkedin.com/in/mukailasam">LinkedIn</a>
+          <a href="mailto:n33ds0n@gmail.com">Email</a>
+        </div>
+        <p class="status-bar">
+          <span class="blink">●</span> Status: Exploring 🐢
+        </p>
+      </footer>
+    </main>
 
     <button id="backToTop" title="Go to top">&#8679;</button>
 
-    <script src="script.js"></script>
-</body>
-
+    <script src="index.js"></script>
+  </body>
 </html>

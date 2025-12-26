@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>404[🐢]</title>
+    <title>0x404 // Page Fault</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="404.css" />
-</head>
+  </head>
 
-<body>
-    <main class="container" role="main" aria-labelledby="page-title">
-        <div class="turtle" aria-hidden="false">
-            <!-- local path from the conversation; hosting system will map this to the real URL -->
-            <img src="./blogs/assets/turtle.svg" alt="Cute green turtle mascot illustration" />
+  <body>
+    <main class="error-container">
+      <div class="turtle-frame">
+        <img src="./assets/turtle.svg" alt="Turtle Mascot" class="turtle-img" />
+      </div>
+
+      <section class="error-message">
+        <div class="terminal-header">
+          <span class="status-code">ERR_SEGMENTATION_FAULT [404]</span>
         </div>
 
-        <section id="404" aria-labelledby="page-title">
-            <div class="subtitle">the turtle race continues 🐢</div>
-            <h1 id="page-title">404 — Page Not Found</h1>
-            <p>Oops — the page you are looking for couldn't be found.</p>
-            <p>
-                You can go back to the
-                <a href="index.html">homepage</a>.
-            </p>
-        </section>
+        <div class="terminal-body">
+          <p class="subtitle">&gt; The turtle race continues 🐢</p>
+          <h1>404 — Node Not Found</h1>
+          <p class="description">
+            The pointer you followed led to a null reference. The page you are
+            looking for does not exist in the current registry.
+          </p>
 
-        <button id="backToTop" title="Go to top">&#8679;</button>
-
-        <script src="script.js"></script>
-</body>
-
+          <nav class="error-nav">
+            <a href="index.html" class="cmd-link">~/ Return to Root</a>
+            <a href="./blogs/codex.html" class="cmd-link">~/ Search Codex</a>
+          </nav>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

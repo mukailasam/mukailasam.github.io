@@ -1,0 +1,326 @@
+/* --- 1. SYSTEM VARIABLES --- */
+
+:root {
+    --bg-dark: #0e1014;
+    --bg-sidebar: #0b0d11;
+    --bg-card: #161b22;
+    --accent: #d63384;
+    /* Oluyanju Pink */
+    --text-main: #e6edf3;
+    --text-muted: #888888;
+    --text-dim: #484f58;
+    --heading-color: wheat;
+    --font-mono: 'JetBrains Mono', monospace;
+    --border-color: #333333;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* --- 2. GLOBAL RESET & BASE --- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+
+/* --- 3. THE LAYOUT ARCHITECTURE --- */
+
+.layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 40px 20px;
+    align-items: start;
+    /* Essential for Sticky Sidebar */
+}
+
+
+/* --- 4. STICKY SIDEBAR COMPONENTS --- */
+
+.sidebar {
+    position: sticky;
+    top: 40px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding-right: 15px;
+    border-right: 1px solid var(--border-color);
+}
+
+
+/* Hide Sidebar Scrollbar */
+
+.sidebar::-webkit-scrollbar {
+    width: 0px;
+}
+
+.profile-container {
+    margin-bottom: 40px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: var(--transition);
+    border: 2px solid var(--border-color);
+    padding: 4px;
+}
+
+.profile-img:hover {
+    filter: grayscale(0%);
+    border-color: var(--accent);
+    transform: scale(1.02);
+}
+
+.identity-log {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+.accent-char {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+
+/* Log Registry Navigation */
+
+.registry-header {
+    background-color: #1a1a1a;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 20px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav li {
+    margin-bottom: 12px;
+}
+
+.nav-num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-size: 0.7rem;
+}
+
+.sidebar-nav a:hover {
+    padding-left: 5px;
+}
+
+.return-root {
+    border-top: 1px solid var(--border-color);
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.return-root a {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+
+/* --- 5. MAIN CONTENT & HEADER --- */
+
+.content {
+    max-width: 850px;
+}
+
+.codex-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.subtitle {
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+
+/* --- 6. INTERACTIVE COMPONENTS (SEARCH & BUTTONS) --- */
+
+.search-container {
+    margin: 40px 0;
+}
+
+#librarySearch {
+    width: 100%;
+    padding: 15px 20px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-sidebar);
+    color: white;
+    outline: none;
+    transition: var(--transition);
+}
+
+#librarySearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(214, 51, 132, 0.15);
+    background-color: var(--bg-card);
+}
+
+#noResults {
+    display: none;
+    text-align: center;
+    color: var(--text-dim);
+    margin-top: 20px;
+}
+
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border: none;
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+#backToTop:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- 7. THE REGISTRY (BLOG LISTS) --- */
+
+.library-sections {
+    margin-top: 20px;
+}
+
+.registry-group {
+    margin-bottom: 50px;
+    border-top: 1px solid #1f242c;
+    padding-top: 20px;
+}
+
+.registry-group h3 {
+    color: var(--heading-color);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.post-list {
+    list-style: none;
+}
+
+
+/* Individual Post Item */
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 4px;
+    transition: var(--transition);
+    border-left: 2px solid transparent;
+}
+
+.post-item:hover {
+    background: var(--bg-card);
+    border-left: 2px solid var(--accent);
+}
+
+.post-title {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.post-meta {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+
+/* Placeholder for empty sections */
+
+.status-placeholder {
+    padding: 12px 15px;
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+
+/* --- 8. MOBILE RESPONSIVENESS --- */
+
+@media (max-width: 992px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .sidebar {
+        position: relative;
+        top: 0;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 30px;
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .codex-header h1 {
+        font-size: 2.5rem;
+    }
+    .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .post-meta {
+        font-size: 0.75rem;
+    }
+}
