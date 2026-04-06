@@ -16,13 +16,13 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    letter-spacing: -0.5px;
 }
 
 .lab-container {
-    max-width: 600px;
+    max-width: 650px;
     width: 90%;
-    padding: 40px;
+    padding: 40px 30px;
+    box-sizing: border-box;
 }
 
 .lab-header {
@@ -33,16 +33,16 @@ body {
 .title {
     font-size: 3rem;
     margin: 0;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     font-weight: 800;
 }
 
 .translation {
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 
@@ -51,15 +51,15 @@ body {
 .status-box {
     background: #161b22;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
     margin-bottom: 40px;
 }
 
 .terminal-header {
     background: #0d1117;
-    padding: 10px 15px;
+    padding: 12px 15px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -67,8 +67,8 @@ body {
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
 }
 
@@ -85,46 +85,72 @@ body {
 }
 
 .terminal-title {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #8b949e;
-    margin-left: 10px;
+    margin-left: 12px;
 }
 
 .terminal-body {
-    padding: 20px;
-    font-size: 0.85rem;
-    line-height: 1.6;
+    padding: 25px 20px;
+    font-size: 0.9rem;
+    line-height: 1.7;
 }
 
 .cursor {
     color: var(--accent);
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 8px;
+    /* Removed blink animation */
 }
 
 .highlight {
     color: #27c93f;
+    font-weight: bold;
 }
 
 .error {
     color: #ff5f56;
+    font-weight: bold;
+}
+
+.success {
+    color: #27c93f;
+    font-weight: bold;
+}
+
+.info {
+    color: #8b949e;
+    font-weight: bold;
 }
 
 
-/* Manifesto Text */
+/* Enclose invention as a block */
 
-.manifesto {
-    text-align: center;
-    color: #8b949e;
-    font-size: 0.95rem;
-    line-height: 1.8;
+.invention-block {
+    border: 1px solid #27c93f;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    background-color: rgba(39, 201, 63, 0.05);
+}
+
+
+/* Links in success messages */
+
+.terminal-body a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.terminal-body a:hover {
+    text-decoration: underline;
 }
 
 
 /* Navigation */
 
 .nav-footer {
-    margin-top: 60px;
     text-align: center;
 }
 
@@ -132,41 +158,57 @@ body {
     color: var(--accent);
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     border: 1px solid var(--accent);
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 10px 25px;
+    border-radius: 6px;
     transition: 0.3s;
 }
 
 .back-link:hover {
     background: var(--accent);
-    color: white;
+    color: #fff;
 }
 
 
-/* Loading Animation */
+/* Loading Animation (only for ...) */
 
-.loading-dots:after {
-    content: ' .';
+.loading-dots::after {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    text-align: left;
     animation: dots 1.5s steps(5, end) infinite;
 }
 
 @keyframes dots {
     0%,
     20% {
-        color: rgba(0, 0, 0, 0);
-        text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
+        content: '';
     }
     40% {
-        color: var(--text-color);
-        text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
+        content: '.';
     }
     60% {
-        text-shadow: .25em 0 0 var(--text-color), .5em 0 0 rgba(0, 0, 0, 0);
+        content: '..';
     }
     80%,
     100% {
-        text-shadow: .25em 0 0 var(--text-color), .5em 0 0 var(--text-color);
+        content: '...';
     }
+}
+
+.pub-note {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-left: 5px;
+}
+
+.pub-note a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.pub-note a:hover {
+    text-decoration: underline;
 }
