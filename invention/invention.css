@@ -1,8 +1,9 @@
 :root {
     --bg-color: #0e1014;
     --text-color: #e6edf3;
-    --accent: #d63384;
+    --accent: #0cc224;
     --border: #30363d;
+    --dim-text: #8b949e;
     --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -11,7 +12,6 @@ body {
     color: var(--text-color);
     font-family: var(--font-mono);
     margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,34 +19,9 @@ body {
 }
 
 .lab-container {
-    max-width: 650px;
     width: 90%;
-    padding: 40px 30px;
-    box-sizing: border-box;
+    max-width: 650px;
 }
-
-.lab-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.title {
-    font-size: 3rem;
-    margin: 0;
-    letter-spacing: -2px;
-    font-weight: 800;
-}
-
-.translation {
-    color: var(--accent);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 8px;
-}
-
-
-/* Terminal Styling */
 
 .status-box {
     background: #161b22;
@@ -86,7 +61,7 @@ body {
 
 .terminal-title {
     font-size: 0.8rem;
-    color: #8b949e;
+    color: var(--dim-text);
     margin-left: 12px;
 }
 
@@ -100,58 +75,79 @@ body {
     color: var(--accent);
     font-weight: bold;
     margin-right: 8px;
-    /* Removed blink animation */
 }
-
-.highlight {
-    color: #27c93f;
-    font-weight: bold;
-}
-
-.error {
-    color: #ff5f56;
-    font-weight: bold;
-}
-
-.success {
-    color: #27c93f;
-    font-weight: bold;
-}
-
-.info {
-    color: #8b949e;
-    font-weight: bold;
-}
-
-
-/* Enclose invention as a block */
 
 .invention-block {
-    border: 1px solid #27c93f;
+    border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 10px 15px;
-    margin: 15px 0;
-    background-color: rgba(39, 201, 63, 0.05);
+    padding: 15px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
-
-/* Links in success messages */
-
-.terminal-body a {
+.project-name {
     color: var(--accent);
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
-.terminal-body a:hover {
-    text-decoration: underline;
+.status-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
 
+.maturity-label {
+    color: var(--dim-text);
+    font-size: 0.8rem;
+}
 
-/* Navigation */
+.percentage {
+    font-weight: bold;
+}
+
+.percentage.high {
+    color: var(--text-color);
+}
+
+.percentage.low {
+    color: var(--text-color);
+}
+
+.description {
+    font-size: 0.8rem;
+    color: var(--dim-text);
+    margin: 8px 0 0 0;
+    border-top: 1px dashed var(--border);
+    padding-top: 8px;
+}
+
+.pub-link {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.pub-link:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.info {
+    color: var(--dim-text);
+    font-weight: bold;
+    margin-top: 25px;
+}
 
 .nav-footer {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .back-link {
@@ -170,15 +166,10 @@ body {
     color: #fff;
 }
 
-
-/* Loading Animation (only for ...) */
-
 .loading-dots::after {
     content: '';
     display: inline-block;
-    width: 1em;
-    text-align: left;
-    animation: dots 1.5s steps(5, end) infinite;
+    animation: dots 1.5s infinite;
 }
 
 @keyframes dots {
@@ -198,17 +189,100 @@ body {
     }
 }
 
-.pub-note {
-    font-size: 0.8rem;
-    color: #8b949e;
-    margin-left: 5px;
+.lab-header {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.pub-note a {
-    color: var(--accent);
-    text-decoration: none;
+.title {
+    color: darkslategrey;
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: -2px;
+    font-weight: 800;
 }
 
-.pub-note a:hover {
-    text-decoration: underline;
+.footer-container {
+    background-color: var(--bg-color);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.quote-style {
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.quote-text {
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.turtle-walker {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    animation: walk-on-text 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes walk-on-text {
+    /* Starting Left, facing Right (90deg) */
+    0% {
+        left: 10px;
+        transform: translateY(-50%) rotate(90deg);
+    }
+    /* Reaching Right side of text */
+    45% {
+        left: calc(100% - 32px);
+        transform: translateY(-50%) rotate(90deg);
+    }
+    /* Turning Around */
+    50% {
+        left: calc(100% - 32px);
+        transform: translateY(-50%) rotate(270deg);
+    }
+    /* Returning Left */
+    95% {
+        left: 10px;
+        transform: translateY(-50%) rotate(270deg);
+    }
+    /* Turning back to start position */
+    100% {
+        left: 10px;
+        transform: translateY(-50%) rotate(90deg);
+    }
+}
+
+
+/* Leg movement animation */
+
+.foot {
+    animation: crawl 0.2s infinite alternate;
+}
+
+@keyframes crawl {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.7;
+        transform: scale(0.9);
+    }
 }
