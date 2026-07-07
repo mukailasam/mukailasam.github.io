@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>otelfile Documentation — Zero-Backend Local Tracing</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <aside>
+      <a href="#" class="logo-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          width="40"
+          height="40"
+        >
+          <rect width="512" height="512" rx="120" fill="#0f172a" />
+          <path
+            d="M160 100h120l80 80v216a16 16 0 0 1-16 16H160a16 16 0 0 1-16-16V116a16 16 0 0 1 16-16z"
+            fill="#f8fafc"
+          />
+          <path d="M280 100v64a16 16 0 0 0 16 16h64z" fill="#cbd5e1" />
+          <rect x="180" y="215" width="130" height="24" rx="6" fill="#3b82f6" />
+          <rect x="210" y="255" width="75" height="24" rx="6" fill="#10b981" />
+          <rect x="260" y="295" width="55" height="24" rx="6" fill="#f59e0b" />
+          <rect x="290" y="335" width="35" height="24" rx="6" fill="#8b5cf6" />
+        </svg>
+        <h1>otelfile</h1>
+      </a>
+
+      <div class="nav-group">
+        <div class="nav-title">Getting Started</div>
+        <ul class="nav-links">
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#quickstart">Quick Start</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Developer Guides</div>
+        <ul class="nav-links">
+          <li><a href="#devloop">Development Loop</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+          <li><a href="#example">Mock Project Example</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Deep Dive</div>
+        <ul class="nav-links">
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#eviction">Eviction Strategy</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          <strong>otelfile</strong> is a developer-experience (DX) focused
+          OpenTelemetry span exporter for Go. It is engineered specifically for
+          active development and manual endpoint testing.
+        </p>
+        <p>
+          Traditional tracing solutions force you to choose between running zero
+          telemetry or hosting a complete Jaeger, Tempo, or OTel Collector
+          database container. This introduces port constraints and system
+          overhead that feel excessive during active developer loops.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>The Concept:</strong> Just like logging to a file (e.g.,
+            <code>app.log</code>), <code>otelfile</code> dumps traces to a
+            portable, single-file HTML document (<code>trace.html</code>). You
+            can open this page directly in any modern browser to view full,
+            interactive distributed tracing timelines.
+          </p>
+        </div>
+      </section>
+
+      <section id="installation">
+        <h2>Installation</h2>
+        <p>
+          Add <code>otelfile</code> to your Go module dependencies. The library
+          is fully compliant with the standard
+          <code>go.opentelemetry.io/otel/sdk/trace</code> core interfaces.
+        </p>
+        <pre><code>go get github.com/yourusername/otelfile</code></pre>
+      </section>
+
+      <section id="quickstart">
+        <h2>Quick Start</h2>
+        <p>
+          Initialize the <code>FileExporter</code> and register it with your
+          application's <code>TracerProvider</code> during setup.
+        </p>
+        <pre><code><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+    <span class="keyword">"context"</span>
+    <span class="keyword">"github.com/yourusername/otelfile"</span>
+    <span class="keyword">"go.opentelemetry.io/otel"</span>
+    sdktrace <span class="keyword">"go.opentelemetry.io/otel/sdk/trace"</span>
+)
+
+<span class="keyword">func</span> main() {
+    <span class="comment">// Create the file-based exporter (Write to "trace.html", keep last 100 traces)</span>
+    exporter := otelfile.NewFileExporter(<span class="string">"trace.html"</span>, <span class="type">100</span>)
+
+    tp := sdktrace.NewTracerProvider(
+        sdktrace.WithSimpleSpanProcessor(exporter),
+    )
+    otel.SetTracerProvider(tp)
+    <span class="keyword">defer</span> tp.Shutdown(context.Background())
+
+    <span class="comment">// Instrument as normal!</span>
+}</code></pre>
+      </section>
+
+      <section id="devloop">
+        <h2>The Local Development Loop</h2>
+        <p>
+          Using <code>otelfile</code> is designed to feel visual and
+          instantaneous. Once registered in your application, you can test
+          endpoints as you write them:
+        </p>
+        <p>
+          1. <strong>Run your local application</strong> to initiate the export
+          process:
+        </p>
+        <pre><code>go run main.go</code></pre>
+        <p>
+          2. <strong>Launch the HTML tracker file</strong> in your browser using
+          standard operating system utilities:
+        </p>
+        <pre><code># macOS
+open trace.html
+
+# Linux
+xdg-open trace.html
+
+# Windows
+start trace.html</code></pre>
+        <p>
+          3. <strong>Trigger endpoints</strong> (using Postman, Chrome, or
+          cURL):
+        </p>
+        <pre><code>curl http://localhost:8080/checkout</code></pre>
+        <p>
+          4. <strong>Refresh the browser tab.</strong> The trace list on the
+          left will populate with your new requests. Select any item to view its
+          nested, visual waterfall chart in real-time.
+        </p>
+      </section>
+
+      <section id="configuration">
+        <h2>Configuration</h2>
+        <p>The initialization function accepts two simple parameters:</p>
+        <pre><code>NewFileExporter(filePath <span class="type">string</span>, maxTraces <span class="type">int</span>)</code></pre>
+        <p>
+          - <code>filePath</code>: The location on disk where the single-file
+          HTML dashboard will be generated. Recommended:
+          <code>"trace.html"</code>.
+        </p>
+        <p>
+          - <code>maxTraces</code>: The rolling in-memory threshold. Keeps your
+          HTML size small by automatically evicting historical spans when the
+          threshold is crossed.
+        </p>
+      </section>
+
+      <h2>Basic Example</h2>
+
+      <div class="code-block-container">
+        <button class="copy-button" data-target-code="go-code-example">
+          Copy
+        </button>
+        <pre><code id="go-code-example" data-lang="go">package main
+
+import (
+	"context"
+	"fmt"
+	"math/rand"
+	"net/http"
+	"time"
+
+	"github.com/mukailasam/otelfile" // Your local package path
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/propagation"
+	"go.opentelemetry.io/otel/sdk/resource"
+	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+	semconv "go.opentelemetry.io/otel/semconv/v1.17.0"
+)
+
+// initTracer initializes the OpenTelemetry pipeline using otelfile as the local exporter
+func initTracer(serviceName string, filePath string) (*sdktrace.TracerProvider, func(context.Context) error, error) {
+	if serviceName == "" {
+		serviceName = "unknown_service"
+	}
+
+	// Create our file-based exporter (keeps a rolling log of 50 traces)
+	exporter := otelfile.NewFileExporter(filePath, 0)
+
+	// Build the resource matching semconv patterns and SchemaURL correctly
+	res, err := resource.New(context.Background(),
+		resource.WithSchemaURL(semconv.SchemaURL), // Correctly passes the schema URL
+		resource.WithAttributes(
+			semconv.ServiceName(serviceName),
+		),
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	// Register the exporter with the correct SimpleSpanProcessor setup
+	tp := sdktrace.NewTracerProvider(
+		sdktrace.WithSpanProcessor(sdktrace.NewSimpleSpanProcessor(exporter)), // Correct method signature
+		sdktrace.WithResource(res),
+	)
+
+	// Set global tracer provider
+	otel.SetTracerProvider(tp)
+
+	// Establish Text Map Propagators (critical for context parsing across requests)
+	otel.SetTextMapPropagator(
+		propagation.NewCompositeTextMapPropagator(
+			propagation.TraceContext{},
+			propagation.Baggage{},
+		),
+	)
+
+	// Return the provider and a safe shutdown function
+	shutdownFunc := func(ctx context.Context) error {
+		if tp != nil {
+			return tp.Shutdown(ctx)
+		}
+		return nil
+	}
+
+	return tp, shutdownFunc, nil
+}
+
+func main() {
+	// Initialize otelfile tracing pipeline on payment-api service
+	_, shutdown, err := initTracer("payment-api", "trace.html")
+	if err != nil {
+		panic(err)
+	}
+	defer func() {
+		_ = shutdown(context.Background())
+	}()
+
+	// Grab our tracer
+	tracer := otel.Tracer("http-server")
+
+	// Setup local web server for endpoint manual testing
+	http.HandleFunc("/checkout", func(w http.ResponseWriter, r *http.Request) {
+		// Extract incoming trace context from headers (like Postman / browser client headers)
+		ctx := propagation.TraceContext{}.Extract(r.Context(), propagation.HeaderCarrier(r.Header))
+
+		// Start the root span using the extracted context
+		ctx, span := tracer.Start(ctx, "HTTP POST /checkout")
+		defer span.End()
+
+		span.SetAttributes(
+			attribute.String("http.method", "POST"),
+			attribute.String("checkout.cart_id", "cart_abc123"),
+		)
+
+		// Simulate Authorization child span
+		func() {
+			_, childSpan := tracer.Start(ctx, "AuthService.Authorize")
+			defer childSpan.End()
+			time.Sleep(time.Duration(30+rand.Intn(40)) * time.Millisecond)
+		}()
+
+		// Simulate Database child span
+		func() {
+			_, childSpan := tracer.Start(ctx, "DB SELECT cart_items")
+			defer childSpan.End()
+			childSpan.SetAttributes(
+				attribute.String("db.system", "postgresql"),
+				attribute.String("db.statement", "SELECT * FROM carts WHERE id = $1"),
+			)
+			time.Sleep(time.Duration(10+rand.Intn(50)) * time.Millisecond)
+		}()
+
+		// Simulate Payment gateway child span
+		func() {
+			_, childSpan := tracer.Start(ctx, "POST https://api.stripe.com/v3/charges")
+			defer childSpan.End()
+			time.Sleep(time.Duration(120+rand.Intn(100)) * time.Millisecond)
+		}()
+
+		w.Write([]byte("Order placed! Open trace.html in your browser."))
+	})
+
+	fmt.Println("Server running on http://localhost:8080")
+	fmt.Println("Send requests to http://localhost:8080/checkout to generate trace.html")
+	_ = http.ListenAndServe(":8080", nil)
+}
+</code></pre>
+      </div>
+
+      <section id="architecture">
+        <h2>Architecture</h2>
+        <p>
+          Standard tracing exporters send serialized protobuf or JSON spans over
+          HTTP/gRPC networks to centralized servers.
+        </p>
+        <p>
+          <code>otelfile</code> intercepts spans during the batch flush. Rather
+          than making outbound network connections, it formats the spans into a
+          flattened, serialized JSON string. It then injects this payload
+          directly into the bottom of a hardcoded, highly styled browser
+          template, writing the combined page onto your local disk.
+        </p>
+      </section>
+
+      <section id="eviction">
+        <h2>Eviction Strategy</h2>
+        <p>
+          Leaving local development apps running for long periods can result in
+          infinite file sizes. To manage this safely:
+        </p>
+        <p>
+          - Spans are tracked and grouped internally by <code>TraceID</code>.
+        </p>
+        <p>
+          - When unique traces exceed your configured limit, the exporter purges
+          the oldest stored trace IDs from memory.
+        </p>
+        <p>
+          - This prevents your disk file from bloating and ensures quick browser
+          loading times.
+        </p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <h3>Is this suitable for production environments?</h3>
+        <p>
+          No. Writing synchronous I/O updates to disk and keeping a rolling
+          trace cache in application RAM is an anti-pattern for large production
+          applications. This tool is designed explicitly to run inside active
+          local dev loops.
+        </p>
+        <h3>How do I share my trace?</h3>
+        <p>
+          Because the generated HTML file is completely self-contained and loads
+          the database locally from embedded JSON blocks, you can simply share
+          the `.html` file over Slack, email, or attach it to a pull request.
+          The receiver can double-click it on their machine to view the exact
+          waterfall chart.
+        </p>
+      </section>
+    </main>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,40 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>0x404 // Page Fault</title>
+    <title>0x404</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="/404.css" />
+    <link rel="stylesheet" type="text/css" href="./404.css" />
   </head>
 
   <body>
     <main class="error-container">
       <div class="turtle-frame">
-        <img src="/assets/turtle.svg" alt="Turtle Mascot" class="turtle-img" />
+        <img src="./assets/turtle.svg" alt="Turtle Mascot" class="turtle-img" />
       </div>
 
       <section class="error-message">
         <div class="terminal-header">
-          <span class="status-code">ERR_SEGMENTATION_FAULT [404]</span>
+          <span class="status-code"> [404]</span>
         </div>
 
         <div class="terminal-body">
-          <p class="subtitle">&gt; The turtle race continues 🐢</p>
           <h1>404 — Node Not Found</h1>
           <p class="description">
-            The pointer you followed led to a null reference. The page you are
-            looking for does not exist in the current registry.
+            The page you are looking for does not exist.
           </p>
 
           <nav class="error-nav">
-            <a href="/index.html" class="cmd-link">~/ Return to Root</a>
-            <a href="/blogs/codex.html" class="cmd-link">~/ Search Codex</a>
+            <a href="./index.html" class="cmd-link">~/ Return to Root</a>
+            <a href="./codex/index.html" class="cmd-link">~/ Search Codex</a>
           </nav>
         </div>
       </section>
