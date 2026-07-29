@@ -1,8 +1,8 @@
 :root {
     --bg-color: #0e1014;
     --text-color: #e6edf3;
-    --accent: #0cc224;
-    --border: #30363d;
+    --accent: #1a324b;
+    --border: #1a324b;
     --dim-text: #8b949e;
     --font-mono: 'JetBrains Mono', monospace;
 }
@@ -196,93 +196,9 @@ body {
 }
 
 .title {
-    color: darkslategrey;
+    color: #1a324b;
     font-size: 3rem;
     margin: 0;
     letter-spacing: -2px;
     font-weight: 800;
-}
-
-.footer-container {
-    background-color: var(--bg-color);
-    padding: 40px 0;
-    text-align: center;
-}
-
-.quote-style {
-    position: relative;
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-color);
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-.quote-text {
-    position: relative;
-    z-index: 1;
-    opacity: 0.9;
-}
-
-.turtle-walker {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 10px;
-    width: 22px;
-    height: 22px;
-    animation: walk-on-text 20s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes walk-on-text {
-    /* Starting Left, facing Right (90deg) */
-    0% {
-        left: 10px;
-        transform: translateY(-50%) rotate(90deg);
-    }
-    /* Reaching Right side of text */
-    45% {
-        left: calc(100% - 32px);
-        transform: translateY(-50%) rotate(90deg);
-    }
-    /* Turning Around */
-    50% {
-        left: calc(100% - 32px);
-        transform: translateY(-50%) rotate(270deg);
-    }
-    /* Returning Left */
-    95% {
-        left: 10px;
-        transform: translateY(-50%) rotate(270deg);
-    }
-    /* Turning back to start position */
-    100% {
-        left: 10px;
-        transform: translateY(-50%) rotate(90deg);
-    }
-}
-
-
-/* Leg movement animation */
-
-.foot {
-    animation: crawl 0.2s infinite alternate;
-}
-
-@keyframes crawl {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.7;
-        transform: scale(0.9);
-    }
 }

@@ -1,11 +1,8 @@
-/* --- 1. SYSTEM VARIABLES --- */
-
 :root {
     --bg-dark: #0e1014;
     --bg-sidebar: #0b0d11;
     --bg-card: #161b22;
-    --accent: #0cc224;
-    /* Oluyanju Pink */
+    --accent: #1a324b;
     --text-main: #e6edf3;
     --text-muted: #888888;
     --text-dim: #484f58;
@@ -14,9 +11,6 @@
     --border-color: #333333;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-
-/* --- 2. GLOBAL RESET & BASE --- */
 
 * {
     box-sizing: border-box;
@@ -42,9 +36,6 @@ a:hover {
     color: var(--accent);
 }
 
-
-/* --- 3. THE LAYOUT ARCHITECTURE --- */
-
 .layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -53,11 +44,7 @@ a:hover {
     max-width: 1300px;
     padding: 40px 20px;
     align-items: start;
-    /* Essential for Sticky Sidebar */
 }
-
-
-/* --- 4. STICKY SIDEBAR COMPONENTS --- */
 
 .sidebar {
     position: sticky;
@@ -67,9 +54,6 @@ a:hover {
     padding-right: 15px;
     border-right: 1px solid var(--border-color);
 }
-
-
-/* Hide Sidebar Scrollbar */
 
 .sidebar::-webkit-scrollbar {
     width: 0px;
@@ -106,9 +90,6 @@ a:hover {
     color: var(--accent);
     font-weight: bold;
 }
-
-
-/* Log Registry Navigation */
 
 .registry-header {
     background-color: #1a1a1a;
@@ -152,9 +133,6 @@ a:hover {
     font-size: 0.8rem;
 }
 
-
-/* --- 5. MAIN CONTENT & HEADER --- */
-
 .content {
     max-width: 850px;
 }
@@ -173,9 +151,6 @@ a:hover {
     letter-spacing: 1px;
     margin-top: 5px;
 }
-
-
-/* --- 6. INTERACTIVE COMPONENTS (SEARCH & BUTTONS) --- */
 
 .search-container {
     margin: 40px 0;
@@ -228,9 +203,6 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-
-/* --- 7. THE REGISTRY (BLOG LISTS) --- */
-
 .library-sections {
     margin-top: 20px;
 }
@@ -252,9 +224,6 @@ a:hover {
 .post-list {
     list-style: none;
 }
-
-
-/* Individual Post Item */
 
 .post-item {
     display: flex;
@@ -282,18 +251,12 @@ a:hover {
     font-size: 0.8rem;
 }
 
-
-/* Placeholder for empty sections */
-
 .status-placeholder {
     padding: 12px 15px;
     color: var(--text-dim);
     font-style: italic;
     font-size: 0.9rem;
 }
-
-
-/* --- 8. MOBILE RESPONSIVENESS --- */
 
 @media (max-width: 992px) {
     .layout {

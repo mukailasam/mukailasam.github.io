@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Create the Back to Top button dynamically
     const btn = document.createElement("button");
     btn.innerHTML = "↑ Top";
     btn.setAttribute("id", "backToTop");
     document.body.appendChild(btn);
 
-    // Show button when user scrolls down 300px
     window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
             btn.style.display = "block";
@@ -14,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Smooth scroll to top when clicked
     btn.addEventListener("click", function() {
         window.scrollTo({
             top: 0,
@@ -25,27 +22,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const turtle = document.getElementById('turtle-container');
     let currentRotation = 0;
 
-    // --- NEW: Click Interaction Logic ---
     turtle.addEventListener('click', function() {
-        // Create the message element
         const msg = document.createElement('div');
         msg.className = 'turtle-message';
-        msg.innerText = "Thank you for reading!";
+        msg.innerText = "Igba n ba jo K’onilu ma gbe ilu lọ";
 
-        // Position it right above the turtle
         const rect = turtle.getBoundingClientRect();
         msg.style.left = `${rect.left}px`;
         msg.style.top = `${rect.top - 40}px`;
 
         document.body.appendChild(msg);
 
-        // Remove from DOM after animation finishes (3 seconds)
         setTimeout(() => {
             msg.remove();
         }, 3000);
     });
 
-    // --- Your existing walkTurtle() logic ---
     function walkTurtle() {
         const rect = turtle.getBoundingClientRect();
         const curX = rect.left + rect.width / 2;

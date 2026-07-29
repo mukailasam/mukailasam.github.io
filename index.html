@@ -11,6 +11,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="./index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   </head>
 
   <body>
@@ -21,45 +23,75 @@
         <a href="./papers/index.html">~/Papers</a>
       </nav>
     </header>
-
     <main class="container">
-      <!-- YOUR ORIGINAL ABOUT CONTENT -->
-      <section id="about">
-        <p>
-          <strong class="highlight">Samsondeen Mukaila</strong>
-          (TheProblemSolver)
-          <br />
+      <div class="profile-header">
+        <strong class="highlight">Samsondeen Mukaila</strong>
+        <p class="tagline">
+          Student of the brain exploring the world of computing.
         </p>
+      </div>
 
-        <p>
-          Is a Software Engineer currently Learning, Building, Breaking, and
-          Fixing stuff at a stealth-mode startup company. He is a curious human
-          who loves learning new things, from Math ideas to Deep Learning
-          concepts to whatever rabbit hole he falls into at 2 a.m.
-        </p>
+      <div id="canvas-container">
+        <div class="artist-signature">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 180 75"
+            width="160"
+            height="66"
+            fill="none"
+          >
+            <!-- Flowing, custom vector cursive path that spells out a stylized "Sam" -->
+            <path
+              d="M 25 38 
+           C 10 15, 50 5, 35 28 
+           C 25 42, 15 38, 30 38
+           C 45 38, 48 28, 55 28
+           C 48 18, 42 38, 55 40
+           C 65 40, 70 28, 75 28
+           C 80 28, 85 40, 85 40
+           C 90 28, 95 40, 95 40
+           C 105 28, 115 40, 135 40
+           M 20 48 Q 80 43 150 38"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
 
-        <p>He loves Rap music, Art, and Philosophy in no particular order.</p>
+            <text
+              x="40"
+              y="56"
+              font-family="sans-serif"
+              font-size="8.5"
+              font-weight="700"
+              fill="currentColor"
+              letter-spacing="4"
+              opacity="0.9"
+            >
+              OLUYANJU
+            </text>
 
-        <p>
-          Most days, he’s either reading papers he barely understands (until he
-          does) or building things that work surprisingly well… after breaking
-          them a few times.
-          <br />
-        </p>
+            <text
+              x="40"
+              y="66"
+              font-family="sans-serif"
+              font-size="5.5"
+              font-weight="500"
+              fill="currentColor"
+              letter-spacing="2"
+              opacity="0.5"
+            >
+              THE PROBLEM SOLVER
+            </text>
+          </svg>
+        </div>
+      </div>
 
-        <p>He also loves research like say tomorrow no dey.</p>
-      </section>
-
-      <p class="blog-link">
-        He sometimes <a href="./codex/index.html">blogs over here</a>
-      </p>
+      <div id="interest">
+        Software Engineering | Art | Neuroscience | Philosophy | Research
+      </div>
 
       <footer class="contact-footer">
-        <h2 class="section-label">Contact</h2>
-        <p>
-          Feel free to shoot him an email for research work or just to connect!
-          You can reach him at n33ds0n@gmail.com.
-        </p>
         <div class="contact-links">
           <a href="https://github.com/mukailasam" target="_blank">Github</a>
           <a href="https://linkedin.com/in/mukailasam" target="_blank"
@@ -69,7 +101,6 @@
         </div>
       </footer>
     </main>
-
     <button id="backToTop" title="Go to top">&#8679;</button>
 
     <script src="./index.js"></script>
